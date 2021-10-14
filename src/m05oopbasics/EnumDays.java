@@ -1,7 +1,7 @@
 package m05oopbasics;
 
 
-import java.util.Locale;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -12,6 +12,7 @@ import java.util.Scanner;
  */
 public class EnumDays {
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(GenresOfBook.values()));
         Book book = Book.input();
     }
 
@@ -25,25 +26,44 @@ public class EnumDays {
             this.bookType = bookType;
         }
 
-        public static Book input () {
-            Scanner scanner = new Scanner (System.in);
+
+        public String getName() {
+            return name;
+        }
+
+        public GenresOfBook getBookType() {
+            return bookType;
+        }
+
+        public static GenresOfBook isGenreExist(String genre) {
+            try {
+                return GenresOfBook.valueOf(genre.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        public static Book input() {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("введите имя книги ");
             String name = scanner.nextLine();
             System.out.println("введите жанр ");
             String genre = scanner.nextLine();
-            switch (GenresOfBook.valueOf(genre.toUpperCase())) {
-                case BELLETRE:
-                    return new Book(name,GenresOfBook.BELLETRE);
-                case PHANTASY:
-                    return new Book(name, GenresOfBook.PHANTASY);
-                case SCIENCE:
-                    return new Book(name, GenresOfBook.SCIENCE);
-                case SCIENCE_FICTION:
-                    return new Book(name, GenresOfBook.SCIENCE_FICTION);
-                default:
-                    System.out.println("неверый жанр");
-                    throw new IllegalArgumentException();
+            try {
+                switch (isGenreExist(genre)) {
+                    case BELLETRE:
+                        return new Book(name, GenresOfBook.BELLETRE);
+                    case PHANTASY:
+                        return new Book(name, GenresOfBook.PHANTASY);
+                    case SCIENCE:
+                        return new Book(name, GenresOfBook.SCIENCE);
+                    case SCIENCE_FICTION:
+                        return new Book(name, GenresOfBook.SCIENCE_FICTION);
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("неверый жанр");
             }
+            return null;
         }
 
         @Override
