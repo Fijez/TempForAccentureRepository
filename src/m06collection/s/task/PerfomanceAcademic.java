@@ -1,6 +1,9 @@
 package m06collection.s.task;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * В классе PerfomanceAcademic необходимо объявить поле grades ( типа HashMap<String, Double>)
