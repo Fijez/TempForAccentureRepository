@@ -25,37 +25,38 @@ class Demo {
         str.add("9");
 
         StringsLinkedLis.node nd = str.getFirst();
+
         System.out.println(nd.getValue());
-        nd.getNext();
+        nd = nd.getNext();
         System.out.println(nd.getValue());
 
-        nd.getNext();
+        nd = nd.getNext();
         System.out.println(nd.getValue());
 
-        nd.getNext();
+        nd = nd.getNext();
         System.out.println(nd.getValue());
 
-        nd.getNext();
+        nd = nd.getNext();
         System.out.println(nd.getValue());
 
-        nd.getNext();
+        nd = nd.getNext();
         System.out.println(nd.getValue());
 
-        nd.getNext();
+        nd = nd.getNext();
         System.out.println(nd.getValue());
 
         System.out.println("-----------------------------------");
 
         System.out.println(nd.getValue());
-        nd.getPrev();
+        nd = nd.getPrev();
         System.out.println(nd.getValue());
-        nd.getPrev();
+        nd = nd.getPrev();
         System.out.println(nd.getValue());
-        nd.getPrev();
+        nd = nd.getPrev();
         System.out.println(nd.getValue());
-        nd.getPrev();
+        nd = nd.getPrev();
         System.out.println(nd.getValue());
-        nd.getPrev();
+        nd = nd.getPrev();
         System.out.println(nd.getValue());
     }
 
@@ -69,15 +70,17 @@ class StringsLinkedLis {
     private node last;
 
     public void add(String str) {
+        node nd = new node(str);
         if (this.first == null) {
-            this.first = this.last = new node(str);
+            this.first = this.last = nd;
         } else if (this.first == this.last){
-            this.last = new node(str);
+            this.last = nd;
             this.last.prev = this.first;
             this.first.next = last;
         } else {
-            this.last.prev.next = new node(str);
-            this.last = this.last.prev.next;
+            this.last.next = nd;
+            this.last.next.prev = this.last;
+            this.last = nd;
         }
     }
 
@@ -97,19 +100,19 @@ class StringsLinkedLis {
         private node prev = null;
         private String value = null;
 
-        public void getNext() {
+        public node getNext() {
             if(next != null) {
-                prev = this;
-                next = next.next;
-                value = prev.value;
+                return next;
+            } else {
+                throw new NullPointerException();
             }
         }
 
-        public void getPrev() {
+        public node getPrev() {
             if (prev != null) {
-                next = this;
-                prev = prev.prev;
-                value = next.value;
+                return prev;
+            } else {
+                throw new NullPointerException();
             }
         }
 
