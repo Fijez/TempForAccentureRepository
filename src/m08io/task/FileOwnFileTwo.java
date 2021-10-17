@@ -7,6 +7,8 @@ package m08io.task;
  *
  */
 
+//условие?
+
 public class FileOwnFileTwo {
     //TODO
 }
