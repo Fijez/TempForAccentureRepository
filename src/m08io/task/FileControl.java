@@ -1,7 +1,6 @@
 package m08io.task;
 
 import java.io.*;
-import java.util.Scanner;
 
 /**
  * Напишите программу которая считывает из консоли имя текстового файла
@@ -16,40 +15,32 @@ public class FileControl {
         System.out.println("Введите имя двух файлов: ");
         String fileName1 = "";
         String fileName2 = "";
-        try {
-            fileName1 = in.readLine();
-            fileName2 = in.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        File file1 = new File(fileName1);
+
+        File file1 = new File("F:\\Java\\Projects\\TempForAccentureRepository\\src\\m08io\\task\\"+ fileName1);
         BufferedReader readerF1 = new BufferedReader(new FileReader(file1));
-        File file2 = new File(fileName2);
+        File file2 = new File("F:\\Java\\Projects\\TempForAccentureRepository\\src\\m08io\\task\\" + fileName2);
         BufferedReader readerF2 = new BufferedReader(new FileReader(file2));
         StringBuilder textFromF1 = new StringBuilder();
         StringBuilder textFromF2 = new StringBuilder();
-        String temp;
-        do {
-            temp = readerF1.readLine();
+        String temp = readerF1.readLine();
+        while (temp != null){
             textFromF1.append(temp);
-        } while (temp != null);
+            temp = readerF1.readLine();
+        }
 
+        String outStr = "";
+        outStr = textFromF1.toString().
+                replaceAll("[., ]", "");
 
-        textFromF1.toString().replace(",", "");
-        textFromF1.toString().replace(" ", "");
-        textFromF1.toString().replace(".", "");
+        System.out.println(outStr);
 
-        System.out.println(textFromF1.toString());
         do {
             temp = readerF1.readLine();
             textFromF2.append(readerF2.readLine());
         } while (temp != null);
 
+        outStr = textFromF2.toString().replaceAll("\\. |,| ", "");
 
-        textFromF2.toString().replace(",", "");
-        textFromF2.toString().replace(" ", "");
-        textFromF2.toString().replace(".", "");
-
-        System.out.println(textFromF2.toString());
+        System.out.println(outStr);
     }
 }

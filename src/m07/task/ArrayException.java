@@ -16,7 +16,6 @@ public class ArrayException {
         try {
             double temp = arrays[5];
         } catch (ArrayIndexOutOfBoundsException e) {
-
             System.out.println("Невозможно братиться к этому элементу, такого не существует");
         }
     }

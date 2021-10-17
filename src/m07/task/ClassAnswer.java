@@ -1,5 +1,9 @@
 package m07.task;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * Реализуйте программу , которая содержит перчень студентов ( имя, фамилия, порядковый номер)
  * и позволяет  вызвать студента путем ввода с консоли порядкового номера.
@@ -10,33 +14,67 @@ package m07.task;
 public class ClassAnswer {
 
     public static void main(String[] args) {
-        Student st = new Student();
+        ClassAnswer classAnswer = new ClassAnswer();
+        classAnswer.addStudent("stName", "stLastName",  1);
+        classAnswer.addStudent("stName1", "stLastName1",  12);
+        classAnswer.addStudent("stName2", "stLastName2",  123);
+        classAnswer.addStudent("stName3", "stLastName3",  1234);
+
+        classAnswer.callStudent(1);
+        classAnswer.callStudent(2);
+
     }
 
 
-    Student student;
+    Map<Integer, Student> students = new HashMap<>();
 
-    public ClassAnswer(String name, String lastName, double id) {
-        this.student.name = name;
-        this.student.lastName = lastName;
-        this.student.id = id;
+    public ClassAnswer(String name, String lastName, int id) {
+        this.students.put(id, new Student(name, lastName));
     }
+
+    public ClassAnswer() {
+    }
+
+    public void addStudent(String name, String lastName, int id) {
+        if (!students.containsKey(id)) {
+            this.students.put(id, new Student(name, lastName));
+        } else {
+            System.out.println("Студент с таким номером существует, введите другой номер");
+            id = new Scanner(System.in).nextInt();
+            addStudent(name, lastName, id);
+        }
+    }
+
     @Override
     public String toString() {
         return "ClassAnswer{" +
-                "name='" + student.name + '\'' +
-                ", lastName='" + student.lastName + '\'' +
-                ", id=" + student.id +
+                "student=" + students +
                 '}';
     }
 
     public void callStudent (int id) {
-
+        if (students.containsKey(id)) {
+            System.out.println(students.get(id).toString());
+        } else {
+            throw new IllegalArgumentException("Такого студента не существует");
+        }
     }
     private static class Student {
     String name;
     String lastName;
-    double id;
+
+        public Student(String name, String lastName) {
+            this.name = name;
+            this.lastName = lastName;
+        }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "name='" + name + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    '}';
+        }
     }
 
 }

@@ -20,15 +20,15 @@ public class BankForMe {
         if (money >= 0) {
             balance += money;
         } else {
-            throw new IllegalArgumentException("нельзя прибавить отрицательнео число");
+            throw new IllegalArgumentException("для снятия денег есть другой метод");
         }
     }
     public void removeMoney(double money) {
-        if( balance < money){
+        if( balance >= money){
         balance -=money;
         }
         else {
-            throw new IllegalArgumentException("Извините, но у Вас $");
+            throw new IllegalArgumentException("Извините, но у Вас " + balance);
         }
     }
 }
