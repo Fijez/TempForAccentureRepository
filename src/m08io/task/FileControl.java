@@ -16,6 +16,9 @@ public class FileControl {
         String fileName1 = "";
         String fileName2 = "";
 
+        fileName1 = in.readLine();
+        fileName2 = in.readLine();
+
         File file1 = new File("F:\\Java\\Projects\\TempForAccentureRepository\\src\\m08io\\task\\"+ fileName1);
         BufferedReader readerF1 = new BufferedReader(new FileReader(file1));
         File file2 = new File("F:\\Java\\Projects\\TempForAccentureRepository\\src\\m08io\\task\\" + fileName2);
