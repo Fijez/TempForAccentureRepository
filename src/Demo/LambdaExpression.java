@@ -18,27 +18,27 @@ import java.util.Comparator;
 public class LambdaExpression {
 
     public static void main(String[] args) {
-        Function() mySort =
+        //Function() mySort =
     }
 
-    public Double maxOdd () {
-        Double[] numb = {5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0};
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(int o1, int o2) {
-                if (o1 % 2 != 0 && o2 % 2 != 0) {
-                    return (o1 > o2? o1:o2);
-                } else if (o1 % 2 != 0) {
-
-                } else if(o1 % 2 != 0) {
-
-                } else {
-
-                }
-                return 0;
-            }
-        }
-        Arrays.stream(numb).max(comparator);
-        return 0.0;
-    }
+//    public Double maxOdd () {
+//        Double[] numb = {5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0};
+//        Comparator<Integer> comparator = new Comparator<Integer>() {
+//            @Override
+//            public int compare(int o1, int o2) {
+//                if (o1 % 2 != 0 && o2 % 2 != 0) {
+//                    return (o1 > o2? o1:o2);
+//                } else if (o1 % 2 != 0) {
+//
+//                } else if(o1 % 2 != 0) {
+//
+//                } else {
+//
+//                }
+//                return 0;
+//            }
+//        };
+//                // Arrays.stream(numb).max(comparator);
+//        return 0.0;
+//    }
 }
