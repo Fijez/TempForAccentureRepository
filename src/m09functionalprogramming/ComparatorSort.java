@@ -1,4 +1,4 @@
-package Demo;
+package m09functionalprogramming;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class ComparatorSort {
                 stream().
                 sorted(Map.Entry.<String, Double>comparingByValue()).
                 forEach(System.out::println);
-
+        System.out.println();
         studentsMap.
                 entrySet().
                 stream().
