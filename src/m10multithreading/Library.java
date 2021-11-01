@@ -1,13 +1,10 @@
-package Demo;
-
-import jdk.jshell.execution.Util;
+package m10multithreading;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Lock;
 
 /**
  * Напишите программу для работы с библотекой.

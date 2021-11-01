@@ -1,4 +1,4 @@
-package Demo;
+package m10multithreading;
 
 /**
  *есть счет, с которого с помощью метода transaction можно производить списание средств.
@@ -10,7 +10,7 @@ package Demo;
  *  2. синхронизация по объекту
  */
 
-class DemoBank {
+class Demo {
     public static void main(String[] args) {
         BankAccount ba1 = new BankAccount();
         BankAccount ba2 = new BankAccount();
