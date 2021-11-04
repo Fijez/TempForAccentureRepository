@@ -1,9 +1,10 @@
 package m09functionalprogramming;
 
 
-import java.lang.reflect.Method;
+
 import java.util.Comparator;
 import java.util.Scanner;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,8 +24,14 @@ public class LambdaExpression {
 
     public static void main(String[] args) {
         System.out.println(maxOdd());
+       MultiplyInterface <Double> multiplyInterface = () -> {
+            System.out.println("Введите два числа");
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextDouble() * scanner.nextDouble();
+        };
+        System.out.println(multiplyInterface.multiply());
 
-       // System.out.println(multiply(new Scanner(System.in)));
+        System.out.println(triangle(10,20,29));
     }
 
     public static double maxOdd () {
@@ -36,12 +43,37 @@ public class LambdaExpression {
         return max * max;
     }
 
-    public static double multiply(double x, double y) {
-        return x*y;
+    @FunctionalInterface
+    interface MultiplyInterface <T> {
+        T multiply();
     }
 
     public static double triangle(double a, double b, double c) {
-      //  Stream.of(a,b,c).map((x,y,z) )
-        return Double.parseDouble(null);
+
+        ConditionCheck check = () -> {
+            return a + b > c && a + c > b && b + c > a;
+        };
+
+        if (check.check()) {
+            Square sq = () -> {
+                double perimeter = (a + b + c)/2;
+                double temp1 = perimeter - a;
+                double temp2 = perimeter - b;
+                double temp3 = perimeter - c;
+                return Math.sqrt(perimeter*temp1*temp2*temp3);
+            };
+            return sq.square();
+        }
+        else {
+            throw new IllegalArgumentException("Неверно указаны стороны треугольника");
+        }
+    }
+    @FunctionalInterface
+    interface Square {
+        double square();
+    }
+    @FunctionalInterface
+    interface ConditionCheck {
+        boolean check();
     }
 }

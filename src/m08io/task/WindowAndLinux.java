@@ -1,6 +1,7 @@
 package m08io.task;
 
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * Реализуйте программу в которой производиться чтения из файла тремя способами:
@@ -8,18 +9,20 @@ import java.io.*;
  */
 
 public class WindowAndLinux {
-    public static byte[] windowsRead(File file) throws IOException {
-        FileInputStream input = new FileInputStream(file);
-        return input.readAllBytes();
-    }
+//    public static byte[] windowsRead() throws IOException {
+//        return null;
+//    }
+//
+//    public static byte[] linuxRead() throws IOException {
+//    return null
+//    }
 
-    public static byte[] linuxRead(File file) throws IOException {
-        FileInputStream input = new FileInputStream(file);
-        return input.readAllBytes();
-    }
+    public static byte[] universalRead() throws IOException {
+        System.out.println("введите полный путь к файлу: ");
+        Scanner scanner = new Scanner(System.in);
+        FileInputStream input = new FileInputStream(scanner.nextLine());
+        scanner.close();
 
-    public static byte[] universalRead(File file) throws IOException {
-        FileInputStream input = new FileInputStream(file);
         return input.readAllBytes();
     }
 }
