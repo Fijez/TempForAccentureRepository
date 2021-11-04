@@ -12,5 +12,5 @@ package m10multithreading;
  */
 
 public class Airport {
-    //TODO
+
 }
