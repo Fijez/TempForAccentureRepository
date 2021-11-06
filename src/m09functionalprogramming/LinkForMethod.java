@@ -23,11 +23,11 @@ public class LinkForMethod {
     public static void main(String[] args) {
         double radius = 10;
         MyFuncInterface<Double> myFuncInterface = SphereVolume::volume;
-        double volume = method(myFuncInterface, radius);
+        double volume = volume(myFuncInterface, radius);
         System.out.println(volume);
     }
 
-    public static double method(MyFuncInterface<Double> myInterface, double radius){
+    public static double volume(MyFuncInterface<Double> myInterface, double radius){
         return myInterface.method(radius);
  }
 }
