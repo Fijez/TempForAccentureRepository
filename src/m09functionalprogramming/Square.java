@@ -7,10 +7,6 @@ import java.util.Scanner;
  *
  */
 
-//1.считаем дискрминант
-//2.оцениваем результат
-//3.находим корни(если возможно)
-
 public class Square {
 
     public static void main(String[] args) {
