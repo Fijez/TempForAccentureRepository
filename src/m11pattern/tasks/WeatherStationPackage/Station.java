@@ -1,6 +1,5 @@
 package m11pattern.tasks.WeatherStationPackage;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +15,26 @@ public class Station implements Listener{
     double pressureMax;
     double pressureAverage;
     List <Double> pressureHistory = new LinkedList<>();
-    List<DirectionOfTheWind> windDirection;
+    List<DirectionOfTheWind> windDirectionHistory = new LinkedList<>();
     DirectionOfTheWind maxWindDirection;
     DirectionOfTheWind minWindDirection;
-    DirectionOfTheWind averageWindDirection;
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "temperatureMin=" + temperatureMin +
+                ", temperatureMax=" + temperatureMax +
+                ", temperatureAverage=" + temperatureAverage +
+                ", temperatureHistory=" + temperatureHistory +
+                ", pressureMin=" + pressureMin +
+                ", pressureMax=" + pressureMax +
+                ", pressureAverage=" + pressureAverage +
+                ", pressureHistory=" + pressureHistory +
+                ", windDirectionHistory=" + windDirectionHistory +
+                ", maxWindDirection=" + maxWindDirection +
+                ", minWindDirection=" + minWindDirection +
+                '}';
+    }
 
     @Override
     public void update(double temperature, double pressure, DirectionOfTheWind wind) {
@@ -29,11 +44,11 @@ public class Station implements Listener{
         this.pressureAverage = average(pressureHistory);
         this.temperatureMin = Math.min(temperature, temperatureMin);
         this.temperatureMax = Math.max(temperature, temperatureMax);
+        this.temperatureHistory.add(pressure);
         this.temperatureAverage = average(temperatureHistory);
-        this.windDirection.add(wind);
-        this.maxWindDirection = maxWindDirectional(windDirection);
-        this.minWindDirection = minWindDirectional(windDirection);
-        //this.averageWindDirection = averageWindDirection(windDirection);
+        this.windDirectionHistory.add(wind);
+        this.maxWindDirection = maxWindDirectional(windDirectionHistory);
+        this.minWindDirection = minWindDirectional(windDirectionHistory);
     }
 
     private static double average(List <Double> list) {
@@ -68,13 +83,4 @@ public class Station implements Listener{
                 get().
                 getKey();
     }
-
-    private static void averageWindDirectional(List <DirectionOfTheWind> list) {
-        Map<DirectionOfTheWind, Long> counts =
-                list.stream().
-                        collect(Collectors.
-                                groupingBy(e -> e, Collectors.counting()));
-       //реализовать поиск наибольшего среднего среди всех направлений
-    }
-
 }

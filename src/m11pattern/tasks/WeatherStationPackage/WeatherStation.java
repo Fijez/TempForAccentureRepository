@@ -1,5 +1,6 @@
 package m11pattern.tasks.WeatherStationPackage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,14 +16,55 @@ import java.util.List;
 
 public class WeatherStation {
 
-    class WeatherData implements Subject{
+    public static void main(String[] args) {
+        WeatherData wd = new WeatherData();
+        wd.setPressure(760);
+        wd.setTemperatureCelsius(20);
+        wd.setWindDirection(DirectionOfTheWind.NORTH);
+        Listener st1 = new Station();
+        Listener st2 = new Station();
+        Listener st3 = new Station();
+        Listener st4 = new Station();
+        Listener st5 = new Station();
+        wd.subscribe(st1);
+        wd.subscribe(st2);
+        wd.subscribe(st3);
+        wd.subscribe(st4);
+        wd.subscribe(st5);
+        wd.notifyListeners();
 
-        List<Listener> listeners;
+        wd.setPressure(60);
+        wd.setTemperatureCelsius(70);
+        wd.setWindDirection(DirectionOfTheWind.EAST);
+        wd.notifyListeners();
+
+        System.out.println(st1);
+        System.out.println(st2);
+        System.out.println(st3);
+        System.out.println(st4);
+        System.out.println(st5);
+    }
+
+    static class WeatherData implements Subject{
+
+        List<Listener> listeners = new ArrayList<>();
 
         private double temperatureCelsius;
         private double pressure;
         private DirectionOfTheWind windDirection;
 
+
+        public void setTemperatureCelsius(double temperatureCelsius) {
+            this.temperatureCelsius = temperatureCelsius;
+        }
+
+        public void setPressure(double pressure) {
+            this.pressure = pressure;
+        }
+
+        public void setWindDirection(DirectionOfTheWind windDirection) {
+            this.windDirection = windDirection;
+        }
 
         @Override
         public void subscribe(Listener listener) {

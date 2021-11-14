@@ -16,6 +16,7 @@ class Demo {
         chocolateBoiler.pourADrink(100);
         System.out.println(chocolateBoiler.getVolumeMilliliters());
         chocolateBoiler.pourADrink(100);
+        System.out.println(chocolateBoiler.getVolumeMilliliters());
     }
 }
 
@@ -34,7 +35,9 @@ public class ChocolateBoiler {
                 this.volumeMilliliters -= drainVolume;
             }
         } else {
-            this.volumeMilliliters -= this.volumeMilliliters;
+
+            this.volumeMilliliters = this.volumeMilliliters >= MAX_DRAIN_MILLILITERS?
+                    this.volumeMilliliters - MAX_DRAIN_MILLILITERS:0;
         }
     }
 
